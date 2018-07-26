@@ -11,13 +11,11 @@ public class Gun : MonoBehaviour {
 
     public void Shoot()
     {
-
         if (Time.time > nextShotTime)
         {
             nextShotTime = Time.time + msBetweenShots / 1000;
             GameObject go = Instantiate(projectile, muzzle.position, muzzle.rotation) as GameObject;
             Projectile newProjectile = go.GetComponent<Projectile>();
-
             newProjectile.SetSpeed(muzzleVelocity);
         }
     }
