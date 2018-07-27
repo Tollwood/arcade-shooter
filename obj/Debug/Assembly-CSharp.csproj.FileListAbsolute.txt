@@ -43,7 +43,6 @@
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.PerformanceReportingModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Physics2DModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.PhysicsModule.dll
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Purchasing.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.ScreenCaptureModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.SharedInternalsModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.SpatialTracking.dll
@@ -61,7 +60,6 @@
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.TimelineModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.TLSModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UI.dll
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UIAutomation.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UIElementsModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UIModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UmbraModule.dll
@@ -76,7 +74,6 @@
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VehiclesModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VideoModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VRModule.dll
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WebModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WindModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.XRModule.dll
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityScript.dll
@@ -210,15 +207,11 @@
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VehiclesModule.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VideoModule.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.VideoModule.xml
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WebModule.dll.mdb
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WebModule.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WindModule.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.WindModule.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.XRModule.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.XRModule.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.Locator.dll.mdb
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UIAutomation.dll.mdb
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UIAutomation.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Networking.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Networking.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.UI.dll.mdb
@@ -232,7 +225,6 @@
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.SpatialTracking.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.SpatialTracking.xml
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Analytics.dll.mdb
-/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.Purchasing.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.StandardEvents.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
 /Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.IvyParser.dll.mdb
@@ -490,3 +482,19 @@
 /Users/tollwood/dev/arcade-shooter/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/tollwood/dev/arcade-shooter/obj/Debug/Assembly-CSharp.dll
 /Users/tollwood/dev/arcade-shooter/obj/Debug/Assembly-CSharp.pdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.TextMeshPro.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.LocalizationModule.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.ProfilerModule.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.StreamingModule.dll
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/Unity.TextMeshPro.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.xml
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.LocalizationModule.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.LocalizationModule.xml
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.ProfilerModule.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.ProfilerModule.xml
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.StreamingModule.dll.mdb
+/Volumes/dev/projects/Arcade Shooter/Temp/bin/Debug/UnityEngine.StreamingModule.xml

@@ -6,13 +6,14 @@ public class LivingEntity : MonoBehaviour, IDamagable {
     protected float health;
     protected bool dead;
 
+    public System.Action onDeath;
+
     public void TakeHit(float damage, RaycastHit hit)
     {
-        health = health - damage;
-        if (health <= 0 && !dead) {
-            Die();
-        }
+        TakeDamage(damage);
     }
+
+
 
     protected virtual void Start () {
         health = startingHealth;
@@ -23,7 +24,19 @@ public class LivingEntity : MonoBehaviour, IDamagable {
 	}
 
     protected void Die(){
-        Destroy(gameObject);
         dead = true;
+        if(onDeath != null){
+            onDeath();
+        }
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health = health - damage;
+        if (health <= 0 && !dead)
+        {
+            Die();
+        }
     }
 }
