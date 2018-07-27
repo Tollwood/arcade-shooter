@@ -1,112 +1,127 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : LivingEntity {
+public class Enemy : LivingEntity
+{
 
     public enum State { Idle, Chasing, Attacking };
     State currentState;
-    NavMeshAgent pathFinder;
-    Material skinMaterial;
-    Color originalColour;
-    float myCollisionRadius;
 
+    NavMeshAgent pathfinder;
     Transform target;
     LivingEntity targetEntity;
-    float targetCollisionRadius;
-    bool hasTarget;
+    Material skinMaterial;
+
+    Color originalColour;
 
     float attackDistanceThreshold = .5f;
     float timeBetweenAttacks = 1;
-    float nextAttackTime;
     float damage = 1;
 
-    protected override void Start () {
-        ConfigureSelf();
-        target = GameObject.FindWithTag("Player").transform;
-        if(target != null){
-            ConfigureTarget();
-        }
-	}
+    float nextAttackTime;
+    float myCollisionRadius;
+    float targetCollisionRadius;
 
-    private void Update()
+    bool hasTarget;
+
+    protected override void Start()
     {
-        if(hasTarget && currentState != State.Attacking && Time.time > nextAttackTime && withinAttackRange()){
-            StartCoroutine(Attack());
+        base.Start();
+        pathfinder = GetComponent<NavMeshAgent>();
+        skinMaterial = GetComponent<Renderer>().material;
+        originalColour = skinMaterial.color;
+
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            currentState = State.Chasing;
+            hasTarget = true;
+
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+            targetEntity = target.GetComponent<LivingEntity>();
+            targetEntity.onDeath += OnTargetDeath;
+
+            myCollisionRadius = GetComponent<CapsuleCollider>().radius;
+            targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
+
+            StartCoroutine(UpdatePath());
         }
     }
 
-    private bool withinAttackRange()
-    {
-        float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
-        return sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2);
-    }
-
-    IEnumerator Attack(){
-        nextAttackTime = Time.time + timeBetweenAttacks;
-        currentState = State.Attacking;
-        pathFinder.enabled = false;
-        Vector3 originalPosition = transform.position;
-        Vector3 dirToTarget = (target.position - transform.position).normalized;
-        Vector3 attackPosition = target.position - dirToTarget * myCollisionRadius;
-
-        float percent = 0;
-        float attackSpeed = 3;
-
-        skinMaterial.color = Color.red;
-        bool hasAppliedDamage = false;
-
-        if (percent <= 1){
-            percent += Time.deltaTime * attackSpeed;
-            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
-            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
-            yield return null;
-        }
-        targetEntity.TakeDamage(damage);
-        skinMaterial.color = originalColour;
-        currentState = State.Chasing;
-        pathFinder.enabled = true;
-    }
-
-    private void ConfigureTarget()
-    {
-        targetEntity = target.GetComponent<LivingEntity>();
-        targetEntity.onDeath += OnTargetDeath;
-        targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
-        currentState = State.Chasing;
-        hasTarget = true;
-        StartCoroutine(UpdatePath());
-    }
-
-    private void OnTargetDeath()
+    void OnTargetDeath()
     {
         hasTarget = false;
         currentState = State.Idle;
     }
 
-    IEnumerator UpdatePath(){
-        float refreshRate = .25f;
-        while(hasTarget){
-            if(currentState == State.Chasing){
-                Vector3 dirToTarget = (target.position - transform.position).normalized;
-                Vector3 targetPosition = target.position - dirToTarget * (myCollisionRadius + targetCollisionRadius + attackDistanceThreshold / 2f);
-                if (!dead)
-                {
-                    pathFinder.SetDestination(targetPosition);
-                }
-                yield return new WaitForSeconds(refreshRate);
-            }
+    void Update()
+    {
+        if (hasTarget && Time.time > nextAttackTime && withInAttackRange()){
+            StartCoroutine(Attack());
         }
     }
 
-    private void ConfigureSelf()
+    private bool withInAttackRange()
     {
-        base.Start();
-        pathFinder = GetComponent<NavMeshAgent>();
-        myCollisionRadius = GetComponent<CapsuleCollider>().radius;
-        skinMaterial = GetComponent<Renderer>().material;
-        originalColour = skinMaterial.color;
+        float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
+        return sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2);
+    }
+
+    IEnumerator Attack()
+    {
+        nextAttackTime = Time.time + timeBetweenAttacks;
+        currentState = State.Attacking;
+        pathfinder.enabled = false;
+
+        Vector3 originalPosition = transform.position;
+        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        Vector3 attackPosition = target.position - dirToTarget * (myCollisionRadius);
+
+        float attackSpeed = 3;
+        float percent = 0;
+
+        skinMaterial.color = Color.red;
+        bool hasAppliedDamage = false;
+
+        while (percent <= 1)
+        {
+
+            if (percent >= .5f && !hasAppliedDamage)
+            {
+                hasAppliedDamage = true;
+                targetEntity.TakeDamage(damage);
+            }
+
+            percent += Time.deltaTime * attackSpeed;
+            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+
+            yield return null;
+        }
+
+        skinMaterial.color = originalColour;
+        currentState = State.Chasing;
+        pathfinder.enabled = true;
+    }
+
+    IEnumerator UpdatePath()
+    {
+        float refreshRate = .25f;
+
+        while (hasTarget)
+        {
+            if (currentState == State.Chasing)
+            {
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                Vector3 targetPosition = target.position - dirToTarget * (myCollisionRadius + targetCollisionRadius + attackDistanceThreshold / 2);
+                if (!dead)
+                {
+                    pathfinder.SetDestination(targetPosition);
+                }
+            }
+            yield return new WaitForSeconds(refreshRate);
+        }
     }
 }
