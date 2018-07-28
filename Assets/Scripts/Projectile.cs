@@ -9,9 +9,21 @@ public class Projectile : MonoBehaviour {
     float speed = 10;
     int damage = 1;
 
+    float timeToLife = 3;
+    float skinWidth = .1f;
+
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+
+    private void Start()
+    {
+        Destroy(gameObject, timeToLife);
+        Collider[] initialCollisions = Physics.OverlapSphere(transform.position, .1f, collisionMask);
+        if(initialCollisions.Length > 0){
+            OnHitObject(initialCollisions[0]);
+        }
     }
 
     void Update()
@@ -28,7 +40,7 @@ public class Projectile : MonoBehaviour {
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistance, collisionMask, QueryTriggerInteraction.Collide)){
+        if (Physics.Raycast(ray, out hit, maxDistance + skinWidth, collisionMask, QueryTriggerInteraction.Collide)){
             OnHitObject(hit);
         }
     }
@@ -38,6 +50,17 @@ public class Projectile : MonoBehaviour {
         IDamagable damagableObject = hit.collider.GetComponent<IDamagable>();
         if(damagableObject != null){
             damagableObject.TakeHit(damage, hit);
+        }
+        Destroy(gameObject);
+    }
+
+
+    private void OnHitObject(Collider c)
+    {
+        IDamagable damagableObject = c.GetComponent<IDamagable>();
+        if (damagableObject != null)
+        {
+            damagableObject.TakeDamage(damage);
         }
         Destroy(gameObject);
     }
