@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour {
         if(remainingEnemiesToSpawn > 0 && Time.time > nextSpawnTime ){
             remainingEnemiesToSpawn--;
             nextSpawnTime = Time.time + currentWave.timeBetweenSpan;
-            Enemy spawnedEnemy = Instantiate(enemyPreFab, Vector3.zero, Quaternion.identity) as Enemy;
+            Enemy spawnedEnemy = Instantiate(enemyPreFab, transform.position, Quaternion.identity) as Enemy;
             livingEnemiesCount++;
             spawnedEnemy.onDeath += OnDeath;
         }	
