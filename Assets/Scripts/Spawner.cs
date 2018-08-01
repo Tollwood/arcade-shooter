@@ -14,7 +14,6 @@ public class Spawner : MonoBehaviour {
     private MapGenerator map;
 
     Player player;
-    Transform playerT;
 
     int remainingEnemiesToSpawn;
     int livingEnemiesCount;
@@ -26,27 +25,30 @@ public class Spawner : MonoBehaviour {
     Vector3 campPositionOld;
     bool isCamping;
 
-    bool isDisabled;
-
     private void Start()
     {
         map = FindObjectOfType<MapGenerator>();
-        player = FindObjectOfType<Player>();
-        player.onDeath += OnPlayerDeath;
-        playerT = player.transform;
+        Game gm = FindObjectOfType<Game>();
+        gm.OnNewGame += ResetGame;
+    }
 
+    private Player GetPlayer(){
+        if(player == null){
+            player = FindObjectOfType<Player>();
+        }
+        return player;
     }
 
     void Update () {
-        if(isDisabled){
+        if(player == null){
             return;
         }
         if (Time.time > nextCampCheckTime)
         {
             nextCampCheckTime = Time.time + timeBetweenCampingChecks;
 
-            isCamping = (Vector3.Distance(playerT.position, campPositionOld) < campThresholdDistance);
-            campPositionOld = playerT.position;
+            isCamping = (Vector3.Distance(player.transform.position, campPositionOld) < campThresholdDistance);
+            campPositionOld = player.transform.position;
         }
         if(remainingEnemiesToSpawn > 0 && Time.time > nextSpawnTime ){
             remainingEnemiesToSpawn--;
@@ -62,10 +64,10 @@ public class Spawner : MonoBehaviour {
         float spawnDelay = 1;
         float tileFlashSpeed = 4;
 
-        Transform spawnTile = map.generatedMap.GetFreeTilePosition();
+        Transform spawnTile = map.GetFreeTilePosition();
         if (isCamping)
         {
-            spawnTile = map.generatedMap.GetTileFromPosition(playerT.position);
+            spawnTile = map.GetTileFromPosition(player.transform.position);
         }
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
         Color initialColour = tileMat.color;
@@ -85,11 +87,6 @@ public class Spawner : MonoBehaviour {
         spawnedEnemy.onDeath += OnEnemyDeath;
     }
 
-    void OnPlayerDeath()
-    {
-        isDisabled = true;
-    }
-
     void OnEnemyDeath()
     {
         livingEnemiesCount--;
@@ -103,11 +100,18 @@ public class Spawner : MonoBehaviour {
 
     void ResetPlayerPosition()
     {
-        playerT.position = map.generatedMap.GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
+        
+        player.transform.position = map.GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
     }
 
     void NextWave()
     {
+        Player currentPlayer = GetPlayer();
+        if (currentPlayer == null)
+        {
+            return;
+        }
+
         currentWaveNumber++;
 
         if (currentWaveNumber - 1 < waves.Length)
@@ -125,6 +129,10 @@ public class Spawner : MonoBehaviour {
         }
     }
  
+    public void ResetGame(){
+        currentWaveNumber = 0;
+        NextWave();
+    }
 
     [System.Serializable]
     public class Wave

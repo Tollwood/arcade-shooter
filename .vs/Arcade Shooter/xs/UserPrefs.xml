@@ -2,17 +2,29 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/map/MapGenerator.cs">
     <Files>
-      <File FileName="Assets/Scripts/map/ObstaclePlacer.cs" Line="31" Column="82" />
-      <File FileName="Assets/Scripts/map/MapConfig.cs" Line="4" Column="23" />
-      <File FileName="Assets/Scripts/map/Map.cs" Line="58" Column="6" />
-      <File FileName="Assets/Scripts/map/MapGenerator.cs" Line="36" Column="42" />
-      <File FileName="Assets/Scripts/Spawner.cs" Line="65" Column="53" />
-      <File FileName="Assets/Editor/MapEditor.cs" Line="17" Column="17" />
+      <File FileName="Assets/Scripts/map/MapGenerator.cs" Line="28" Column="23" />
+      <File FileName="Assets/Scripts/map/Navigation.cs" Line="44" Column="6" />
+      <File FileName="Assets/Scripts/map/ObstacleFactory.cs" Line="39" Column="10" />
+      <File FileName="Assets/Scripts/map/Coord.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/map/Map.cs" Line="4" Column="2" />
+      <File FileName="Assets/Scripts/map/MapConfig.cs" Line="18" Column="9" />
+      <File FileName="Assets/Scripts/Spawner.cs" Line="124" Column="26" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="32" Column="20" />
+      <File FileName="Assets/Scripts/LivingEntity.cs" Line="41" Column="26" />
+      <File FileName="Assets/Scripts/UiManager.cs" Line="22" Column="38" />
+      <File FileName="Assets/Scripts/Player.cs" Line="22" Column="23" />
+      <File FileName="Assets/Scripts/Utility.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game.cs" Line="15" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/map/MapGenerator.cs" relfile="Assets/Scripts/map/MapGenerator.cs" line="38" column="1" />
+      <Breakpoint enabled="false" file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/Spawner.cs" relfile="Assets/Scripts/Spawner.cs" line="117" column="1" />
+      <Breakpoint file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/Spawner.cs" relfile="Assets/Scripts/Spawner.cs" line="59" column="1" />
+      <Breakpoint file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/Spawner.cs" relfile="Assets/Scripts/Spawner.cs" line="121" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

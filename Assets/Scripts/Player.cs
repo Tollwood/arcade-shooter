@@ -18,7 +18,8 @@ public class Player : LivingEntity{
         viewCamera = Camera.main;
     }
 
-    void Update () {
+    protected override void Update () {
+        base.Update();
         handleMovement();
         handleShooting();
         handleLookAt();

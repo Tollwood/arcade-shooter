@@ -6,6 +6,8 @@ public class LivingEntity : MonoBehaviour, IDamagable {
     protected float health;
     protected bool dead;
 
+
+
     public System.Action onDeath;
 
     public void TakeHit(float damage, RaycastHit hit)
@@ -13,22 +15,32 @@ public class LivingEntity : MonoBehaviour, IDamagable {
         TakeDamage(damage);
     }
 
-
-
     protected virtual void Start () {
         health = startingHealth;
+        Game gm = FindObjectOfType<Game>();
+        gm.OnGameOver += Destroy;
 	}
-	
-	void Update () {
-		
-	}
+
+
+    protected virtual void Update()
+    {
+        if(transform.position.y < -10){
+            Die();
+        }
+    }
 
     protected void Die(){
         dead = true;
         if(onDeath != null){
             onDeath();
         }
-        Destroy(gameObject);
+    }
+
+    protected void Destroy()
+    {
+        if(this != null){
+            Destroy(gameObject);    
+        }
     }
 
     public void TakeDamage(float damage)

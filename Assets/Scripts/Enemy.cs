@@ -25,11 +25,11 @@ public class Enemy : LivingEntity
     float myCollisionRadius;
     float targetCollisionRadius;
 
-    bool hasTarget;
 
     protected override void Start()
     {
         base.Start();
+        onDeath += Destroy;
         pathfinder = GetComponent<NavMeshAgent>();
         skinMaterial = GetComponent<Renderer>().material;
         originalColour = skinMaterial.color;
@@ -37,11 +37,9 @@ public class Enemy : LivingEntity
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             currentState = State.Chasing;
-            hasTarget = true;
 
             target = GameObject.FindGameObjectWithTag("Player").transform;
             targetEntity = target.GetComponent<LivingEntity>();
-            targetEntity.onDeath += OnTargetDeath;
 
             myCollisionRadius = GetComponent<CapsuleCollider>().radius;
             targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
@@ -50,15 +48,11 @@ public class Enemy : LivingEntity
         }
     }
 
-    void OnTargetDeath()
-    {
-        hasTarget = false;
-        currentState = State.Idle;
-    }
 
-    void Update()
+    protected override void Update()
     {
-        if (hasTarget && Time.time > nextAttackTime && withInAttackRange()){
+        base.Update();
+        if (target && Time.time > nextAttackTime && withInAttackRange()){
             StartCoroutine(Attack());
         }
     }
@@ -110,13 +104,13 @@ public class Enemy : LivingEntity
     {
         float refreshRate = .25f;
 
-        while (hasTarget)
+        while (target != null)
         {
             if (currentState == State.Chasing)
             {
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 Vector3 targetPosition = target.position - dirToTarget * (myCollisionRadius + targetCollisionRadius + attackDistanceThreshold / 2);
-                if (!dead)
+                if (!dead && target != null)
                 {
                     pathfinder.SetDestination(targetPosition);
                 }
