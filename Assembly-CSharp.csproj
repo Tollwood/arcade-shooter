@@ -61,27 +61,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\DualJoystickPlayerController.cs" />
-    <Compile Include="Assets\Scripts\DualJoystickTouchContoller.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\GameOverMenu.cs" />
+    <Compile Include="Assets\Scripts\Entities\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Entities\Gun.cs" />
+    <Compile Include="Assets\Scripts\Entities\GunController.cs" />
+    <Compile Include="Assets\Scripts\Entities\IDamagable.cs" />
+    <Compile Include="Assets\Scripts\Entities\LivingEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\Player.cs" />
+    <Compile Include="Assets\Scripts\Entities\Projectile.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
-    <Compile Include="Assets\Scripts\GameHubController.cs" />
-    <Compile Include="Assets\Scripts\Gun.cs" />
-    <Compile Include="Assets\Scripts\GunController.cs" />
-    <Compile Include="Assets\Scripts\Healthbar.cs" />
-    <Compile Include="Assets\Scripts\IDamagable.cs" />
-    <Compile Include="Assets\Scripts\LivingEntity.cs" />
     <Compile Include="Assets\Scripts\map\Coord.cs" />
     <Compile Include="Assets\Scripts\map\Map.cs" />
     <Compile Include="Assets\Scripts\map\MapConfig.cs" />
     <Compile Include="Assets\Scripts\map\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\map\Navigation.cs" />
     <Compile Include="Assets\Scripts\map\ObstacleFactory.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\PlayerControlls\DualJoystickPlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerControlls\DualJoystickTouchContoller.cs" />
+    <Compile Include="Assets\Scripts\PlayerControlls\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
-    <Compile Include="Assets\Scripts\UiManager.cs" />
+    <Compile Include="Assets\Scripts\UI\GameHubController.cs" />
+    <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\UI\UiManager.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystick.cs" />
     <Compile Include="Assets\TouchJoysticks\Scripts\LeftJoystickPlayerController.cs" />

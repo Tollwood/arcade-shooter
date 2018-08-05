@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour {
     Wave currentWave;
     int currentWaveNumber;
     public event Action<int> OnNewWave;
+    public event Action<Enemy> OnNewEnemy;
 
     public Enemy enemyPreFab;
 
@@ -83,6 +84,7 @@ public class Spawner : MonoBehaviour {
 
         Enemy spawnedEnemy = Instantiate(enemyPreFab, spawnTile.position + Vector3.up, Quaternion.identity) as Enemy;
         spawnedEnemy.onDeath += OnEnemyDeath;
+        OnNewEnemy(spawnedEnemy);
     }
 
     void OnEnemyDeath()
