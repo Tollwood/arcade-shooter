@@ -1,0 +1,4 @@
+﻿bullet = https://www.freepik.com/free-icon/bullet_731098.htm#term=bullet&page=1&position=15
+eyes = https://www.freepik.com/free-vector/eyes-icons-collection_759282.htm#term=eyes&page=1&position=1
+footprint = https://www.freepik.com/free-vector/footprints-shadows-of-animals-and-human_723477.htm#term=feet&page=1&position=0
+heart = https://www.freepik.com/free-vector/collection-of-heart_887838.htm#term=heart&page=1&position=22

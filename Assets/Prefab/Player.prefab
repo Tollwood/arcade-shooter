@@ -73,11 +73,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4648969088192348}
+  - component: {fileID: 54395427350365254}
+  - component: {fileID: 136405245252548774}
   - component: {fileID: 33949475218560408}
   - component: {fileID: 23947905762644756}
-  - component: {fileID: 136405245252548774}
   - component: {fileID: 114095321109450612}
-  - component: {fileID: 54395427350365254}
   - component: {fileID: 114430918337779920}
   - component: {fileID: 114170733013976732}
   m_Layer: 0
@@ -142,7 +142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1909603958356338}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.03, y: -0.007, z: -0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4254894416561578}
@@ -224,7 +224,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477769851998576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 3, z: 0.5}
+  m_LocalPosition: {x: -3.02, y: 1.01, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4392600488708912}
@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d53231fe1fa47c780b947be599ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
-  moveSpeed: 5
+  startingHealth: 10
+  moveSpeed: 6
 --- !u!114 &114430918337779920
 MonoBehaviour:
   m_ObjectHideFlags: 1

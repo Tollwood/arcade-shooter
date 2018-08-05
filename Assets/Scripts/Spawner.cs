@@ -76,9 +76,7 @@ public class Spawner : MonoBehaviour {
 
         while (spawnTimer < spawnDelay)
         {
-
             tileMat.color = Color.Lerp(initialColour, flashColour, Mathf.PingPong(spawnTimer * tileFlashSpeed, 1));
-
             spawnTimer += Time.deltaTime;
             yield return null;
         }
@@ -100,7 +98,6 @@ public class Spawner : MonoBehaviour {
 
     void ResetPlayerPosition()
     {
-        
         player.transform.position = map.GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
     }
 

@@ -5,8 +5,10 @@
 public class Player : LivingEntity{
 
     public float moveSpeed = 5;
+    LeftJoystick leftJoystick;
+    RightJoystick rightJoystick;
 
-    Camera viewCamera;
+
     PlayerController controller;
     GunController gunController;
 
@@ -15,7 +17,8 @@ public class Player : LivingEntity{
         base.Start();
         controller = GetComponent<PlayerController>();
         gunController = GetComponent<GunController>();
-        viewCamera = Camera.main;
+        leftJoystick = FindObjectOfType<LeftJoystick>();
+        rightJoystick = FindObjectOfType<RightJoystick>();
     }
 
     protected override void Update () {
@@ -27,7 +30,7 @@ public class Player : LivingEntity{
 
     private void handleShooting()
     {
-        if (Input.GetMouseButton(0))
+        if (rightJoystick.GetMagnitude() > 0.7f)
         {
             gunController.Shoot();
         }
@@ -35,7 +38,8 @@ public class Player : LivingEntity{
 
     private void handleMovement()
     {
-        Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector3 moveVector = leftJoystick.GetInputDirection();
+        Vector3 moveInput = new Vector3(moveVector.x, 0, moveVector.y);
         Vector3 moveVelocity = moveInput.normalized * moveSpeed;
 
         controller.Move(moveVelocity);
@@ -43,16 +47,8 @@ public class Player : LivingEntity{
 
     private void handleLookAt()
     {
-        Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayDistance;
+        Vector3 point = transform.position + new Vector3(rightJoystick.GetInputDirection().x, 0, rightJoystick.GetInputDirection().y);
+        controller.LookAt(point);
 
-        if (groundPlane.Raycast(ray, out rayDistance))
-        {
-            Vector3 point = ray.GetPoint(rayDistance);
-            Debug.DrawLine(ray.origin, point, Color.red);
-            //Debug.DrawRay(ray.origin,ray.direction * 100,Color.red);
-            controller.LookAt(point);
-        }
     }
 }

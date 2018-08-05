@@ -2,15 +2,15 @@
 
 public class LivingEntity : MonoBehaviour, IDamagable {
 
-    public float startingHealth;
-    protected float health;
+    public int startingHealth;
+    public int health { get; protected set; }
     protected bool dead;
 
 
 
     public System.Action onDeath;
 
-    public void TakeHit(float damage, RaycastHit hit)
+    public void TakeHit(int damage, RaycastHit hit)
     {
         TakeDamage(damage);
     }
@@ -43,7 +43,7 @@ public class LivingEntity : MonoBehaviour, IDamagable {
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health = health - damage;
         if (health <= 0 && !dead)

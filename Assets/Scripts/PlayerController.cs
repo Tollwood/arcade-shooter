@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Move(Vector3 _velocity)
     {
-        velocity = transform.TransformDirection(_velocity);
+        velocity = _velocity;
     }
 
     public void LookAt(Vector3 lookPoint)

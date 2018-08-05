@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
-using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : LivingEntity
@@ -19,7 +18,7 @@ public class Enemy : LivingEntity
 
     float attackDistanceThreshold = .5f;
     float timeBetweenAttacks = 1;
-    float damage = 1;
+    int damage = 1;
 
     float nextAttackTime;
     float myCollisionRadius;
