@@ -44,4 +44,8 @@ public class LivingEntity : MonoBehaviour, IDamagable {
             Die();
         }
     }
+
+    public void healtBoost(int increase){
+        health = Mathf.Clamp(health + increase, 0, startingHealth);
+    }
 }

@@ -10,7 +10,9 @@ public class Spawner : MonoBehaviour
     Wave currentWave;
     int currentWaveNumber;
     public event Action<int> OnNewWave;
+
     public event Action<Enemy> OnNewEnemy;
+
     private List<Enemy> livingEnemies;
     public Enemy enemyPreFab;
 
@@ -131,6 +133,16 @@ public class Spawner : MonoBehaviour
         }
     }
  
+    internal void increaseRemainingTime(float timeIncrease)
+    {
+        remainingTimeToSpawn += timeIncrease;
+    }
+
+    internal void reduceSpawnSpeed(float timeIncrease)
+    {
+        currentTimeBetweenSpan += timeIncrease;
+    }
+
     public void ResetGame(){
         currentWaveNumber = 0;
         NextWave();
