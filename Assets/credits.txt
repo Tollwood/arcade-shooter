@@ -2,3 +2,5 @@
 eyes = https://www.freepik.com/free-vector/eyes-icons-collection_759282.htm#term=eyes&page=1&position=1
 footprint = https://www.freepik.com/free-vector/footprints-shadows-of-animals-and-human_723477.htm#term=feet&page=1&position=0
 heart = https://www.freepik.com/free-vector/collection-of-heart_887838.htm#term=heart&page=1&position=22
+time + throphy = https://de.freepik.com/vektoren-kostenlos/fussball-realistische-symbole_1531155.htm
+numberDIsplay = https://de.freepik.com/vektoren-kostenlos/realistische-anzeiger_834420.htm

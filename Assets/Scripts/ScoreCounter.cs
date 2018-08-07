@@ -1,13 +1,10 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class ScoreCounter : MonoBehaviour
 {
     private static string HIGH_SCORE = "highscore";
     public int score { get; private set; }
     public int highScore { get; private set; }
-    private TextMeshProUGUI textMeshPro;
 
     private void Awake()
     {
@@ -18,7 +15,6 @@ public class ScoreCounter : MonoBehaviour
     void Start () {
         Spawner spawner = FindObjectOfType<Spawner>();
         spawner.OnNewEnemy += OnNewEnemy;
-        textMeshPro = GetComponent<TextMeshProUGUI>();
         Game gm = FindObjectOfType<Game>();
         gm.OnNewGame += OnNewGame;
         gm.OnGameOver += OnGameOver;
@@ -30,12 +26,10 @@ public class ScoreCounter : MonoBehaviour
 	
     public void OnEnemyKilled(){
         score += 5;
-        textMeshPro.text = "" + score;
     }
 
     private void OnNewGame() { 
-        score = 0; 
-        textMeshPro.text = "" + score;
+        score = 0;
     }
 
     private void OnGameOver(){

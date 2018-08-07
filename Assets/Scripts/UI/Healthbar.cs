@@ -27,7 +27,7 @@ public class Healthbar : MonoBehaviour {
             GameObject prefab = i % 2 == 0 ? leftHeartPrefab : rightHeartPrefab;
             GameObject heart = Instantiate(prefab, transform);
             RectTransform rectTransform = heart.GetComponent<RectTransform>();
-            rectTransform.localPosition = new Vector3(46 * i, -75/2 , 0);
+            rectTransform.localPosition = new Vector3(36 * i, -70/2 , 0);
         }
     }
 
