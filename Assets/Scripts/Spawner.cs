@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour {
+public class Spawner : MonoBehaviour
+{
 
     public Wave[] waves;
     Wave currentWave;
     int currentWaveNumber;
     public event Action<int> OnNewWave;
     public event Action<Enemy> OnNewEnemy;
-
+    private List<Enemy> livingEnemies;
     public Enemy enemyPreFab;
 
     private MapGenerator map;
 
     Player player;
 
-    int remainingEnemiesToSpawn;
-    int livingEnemiesCount;
+    public float remainingTimeToSpawn { get; private set; }
     float nextSpawnTime;
+    float currentTimeBetweenSpan;
 
     float timeBetweenCampingChecks = 2;
     float campThresholdDistance = 1.5f;
@@ -31,6 +33,7 @@ public class Spawner : MonoBehaviour {
         map = FindObjectOfType<MapGenerator>();
         Game gm = FindObjectOfType<Game>();
         gm.OnNewGame += ResetGame;
+        livingEnemies = new List<Enemy>();
     }
 
     private Player GetPlayer(){
@@ -44,6 +47,7 @@ public class Spawner : MonoBehaviour {
         if(player == null){
             return;
         }
+        remainingTimeToSpawn -= Time.deltaTime;
         if (Time.time > nextCampCheckTime)
         {
             nextCampCheckTime = Time.time + timeBetweenCampingChecks;
@@ -51,12 +55,12 @@ public class Spawner : MonoBehaviour {
             isCamping = (Vector3.Distance(player.transform.position, campPositionOld) < campThresholdDistance);
             campPositionOld = player.transform.position;
         }
-        if(remainingEnemiesToSpawn > 0 && Time.time > nextSpawnTime ){
-            remainingEnemiesToSpawn--;
-            nextSpawnTime = Time.time + currentWave.timeBetweenSpan;
+        if(remainingTimeToSpawn > 0 && Time.time > nextSpawnTime ){
+            nextSpawnTime = Time.time + currentTimeBetweenSpan;
             StartCoroutine(SpawnEnemy());
-        }	
-        if(livingEnemiesCount == 0 && currentWaveNumber <= waves.Length){
+        }
+        if (remainingTimeToSpawn < 0 && currentWaveNumber <= waves.Length)
+        {
             NextWave();
         }
 	}
@@ -83,18 +87,9 @@ public class Spawner : MonoBehaviour {
         }
 
         Enemy spawnedEnemy = Instantiate(enemyPreFab, spawnTile.position + Vector3.up, Quaternion.identity) as Enemy;
-        spawnedEnemy.onDeath += OnEnemyDeath;
         OnNewEnemy(spawnedEnemy);
-    }
-
-    void OnEnemyDeath()
-    {
-        livingEnemiesCount--;
-
-        if (livingEnemiesCount == 0)
-        {
-            NextWave();
-        }
+        livingEnemies.Add(spawnedEnemy);
+        currentTimeBetweenSpan -= currentWave.timeIncrement;
     }
 
 
@@ -111,14 +106,22 @@ public class Spawner : MonoBehaviour {
             return;
         }
 
+        foreach(Enemy enemy in livingEnemies)
+        {
+            if(enemy != null){
+                Destroy(enemy.gameObject);
+            }
+        }
+
         currentWaveNumber++;
 
         if (currentWaveNumber - 1 < waves.Length)
         {
             currentWave = waves[currentWaveNumber - 1];
 
-            remainingEnemiesToSpawn = currentWave.enemyCount;
-            livingEnemiesCount = remainingEnemiesToSpawn;
+            currentTimeBetweenSpan = currentWave.timeBetweenSpan;
+            remainingTimeToSpawn = currentWave.spawnTime;
+
 
             if (OnNewWave != null)
             {
@@ -136,7 +139,8 @@ public class Spawner : MonoBehaviour {
     [System.Serializable]
     public class Wave
     {
-        public int enemyCount;
+        public float spawnTime;
         public float timeBetweenSpan;
+        public float timeIncrement;
     }
 }

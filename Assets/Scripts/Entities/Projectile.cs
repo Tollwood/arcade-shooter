@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour {
     {
         IDamagable damagableObject = hit.collider.GetComponent<IDamagable>();
         if(damagableObject != null){
-            damagableObject.TakeHit(damage, hit);
+            damagableObject.TakeDamage(damage);
         }
         Destroy(gameObject);
     }

@@ -6,12 +6,8 @@ public class GameHubController : MonoBehaviour {
     [SerializeField]
     public List<GameObject> controlls;
 
-    Game gameManager;
-
-	// Use this for initialization
 	void Start () {
-
-        gameManager = FindObjectOfType<Game>();
+        Game gameManager= FindObjectOfType<Game>();
         gameManager.OnNewGame += Enable;
         gameManager.OnGameOver += Disable;
 	}

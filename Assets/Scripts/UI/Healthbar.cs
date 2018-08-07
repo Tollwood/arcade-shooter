@@ -8,7 +8,6 @@ public class Healthbar : MonoBehaviour {
     private Player player = null;
     private int renderedHealth = 0;
 	
-	// Update is called once per frame
 	void Update () {
 
         if(player == null){

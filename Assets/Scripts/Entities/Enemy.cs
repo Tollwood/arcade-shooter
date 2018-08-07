@@ -19,6 +19,8 @@ public class Enemy : LivingEntity
     float attackDistanceThreshold = .5f;
     float timeBetweenAttacks = 1;
     int damage = 1;
+    float attackSpeed = 3;
+
 
     float nextAttackTime;
     float myCollisionRadius;
@@ -72,7 +74,6 @@ public class Enemy : LivingEntity
         Vector3 dirToTarget = (target.position - transform.position).normalized;
         Vector3 attackPosition = target.position - dirToTarget * (myCollisionRadius);
 
-        float attackSpeed = 3;
         float percent = 0;
 
         skinMaterial.color = Color.red;

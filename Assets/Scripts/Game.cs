@@ -14,7 +14,6 @@ public class Game : MonoBehaviour {
     public void NewGame(){
         Player player =  Instantiate(playerPrefab, transform);
         player.onDeath += GameOver;
-        Spawner spawner = FindObjectOfType<Spawner>();
         OnNewGame();
     }
   

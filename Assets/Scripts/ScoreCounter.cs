@@ -9,15 +9,19 @@ public class ScoreCounter : MonoBehaviour
     public int highScore { get; private set; }
     private TextMeshProUGUI textMeshPro;
 
-	void Start () {
+    private void Awake()
+    {
+        highScore = PlayerPrefs.GetInt(HIGH_SCORE, 0);
+        score = -1;
+    }
+
+    void Start () {
         Spawner spawner = FindObjectOfType<Spawner>();
         spawner.OnNewEnemy += OnNewEnemy;
         textMeshPro = GetComponent<TextMeshProUGUI>();
         Game gm = FindObjectOfType<Game>();
         gm.OnNewGame += OnNewGame;
         gm.OnGameOver += OnGameOver;
-        highScore = PlayerPrefs.GetInt(HIGH_SCORE, 0);
-        score = -1;
 	}
 
     public void OnNewEnemy(Enemy enemy){

@@ -6,14 +6,7 @@ public class LivingEntity : MonoBehaviour, IDamagable {
     public int health { get; protected set; }
     protected bool dead;
 
-
-
     public System.Action onDeath;
-
-    public void TakeHit(int damage, RaycastHit hit)
-    {
-        TakeDamage(damage);
-    }
 
     protected virtual void Start () {
         health = startingHealth;

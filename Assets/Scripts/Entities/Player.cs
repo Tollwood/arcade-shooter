@@ -7,8 +7,6 @@ public class Player : LivingEntity{
     public float moveSpeed = 5;
     LeftJoystick leftJoystick;
     RightJoystick rightJoystick;
-
-
     PlayerController controller;
     GunController gunController;
 
