@@ -6,7 +6,7 @@ public class SpawnBoost : Boost
     {
         if (otherCollider.gameObject.tag == "Player")
         {
-            FindObjectOfType<Spawner>().reduceSpawnSpeed(boostValue);
+            FindObjectOfType<SpawnTimeFeature>().reduceSpawnSpeed(boostValue);
             Destroy(gameObject);
         }
     }

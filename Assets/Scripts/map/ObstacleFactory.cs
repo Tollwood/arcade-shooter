@@ -67,7 +67,7 @@ public class ObstacleFactory: MonoBehaviour {
         return tilesWithObstacle;
     }
 
-    bool MapIsFullyAccessible(MapConfig currentMap, bool[,] obstacleMap, int currentObstacleCount)
+    bool MapIsFullyAccessible(Level currentMap, bool[,] obstacleMap, int currentObstacleCount)
     {
         bool[,] mapFlags = new bool[obstacleMap.GetLength(0), obstacleMap.GetLength(1)];
         Queue<Coord> queue = new Queue<Coord>();

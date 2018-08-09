@@ -1,5 +1,3 @@
-﻿using UnityEngine;
-
-public interface IDamagable {
+﻿public interface IDamagable {
     void TakeDamage(int damage);
 }

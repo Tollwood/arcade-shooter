@@ -72,10 +72,13 @@
     <Compile Include="Assets\Scripts\Entities\LivingEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\Player.cs" />
     <Compile Include="Assets\Scripts\Entities\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Features\CampingFeature.cs" />
+    <Compile Include="Assets\Scripts\Features\ScoreCountFeature.cs" />
+    <Compile Include="Assets\Scripts\Features\SpawnTimeFeature.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
+    <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\map\Coord.cs" />
     <Compile Include="Assets\Scripts\map\Map.cs" />
-    <Compile Include="Assets\Scripts\map\MapConfig.cs" />
     <Compile Include="Assets\Scripts\map\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\map\Navigation.cs" />
     <Compile Include="Assets\Scripts\map\ObstacleFactory.cs" />
@@ -83,7 +86,6 @@
     <Compile Include="Assets\Scripts\PlayerControlls\LeftJoystick.cs" />
     <Compile Include="Assets\Scripts\PlayerControlls\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerControlls\RightJoystick.cs" />
-    <Compile Include="Assets\Scripts\ScoreCounter.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UI\GameHubController.cs" />
     <Compile Include="Assets\Scripts\UI\GameOverScreenController.cs" />

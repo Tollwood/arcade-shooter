@@ -9,8 +9,6 @@ public class MapGenerator : MonoBehaviour {
     public float outlinePercent;
     public float tileSize = 1;
 
-    public int mapIndex;
-    public MapConfig[] maps;
     public Map generatedMap;
 
     string holderName = "Generated Map";
@@ -22,20 +20,19 @@ public class MapGenerator : MonoBehaviour {
 
     private void Start()
     {
-        Spawner spawner = FindObjectOfType<Spawner>();
-        spawner.OnNewWave += OnNewWave;
-        GenerateMap();
+        Game gm = FindObjectOfType<Game>();
+        gm.OnNewLevel += OnNewLevel;
+        GenerateMap(gm.levels[0]);
     }
 
-    private void OnNewWave(int currentWaveNumber)
+    private void OnNewLevel(Level newLevel)
     {
-        mapIndex = currentWaveNumber - 1;
-        GenerateMap();
+        GenerateMap(newLevel);
     }
 
-    public void GenerateMap(){
+    public void GenerateMap(Level newLevel){
         deleteCurrentMap();
-        Map map = new Map(maps[mapIndex]);
+        Map map = new Map(newLevel);
         navigation = GetComponent<Navigation>();
         navigation.setup(map.config,tileSize,mapHolder,maxMapSize);
         obstacleFactory = GetComponent<ObstacleFactory>();

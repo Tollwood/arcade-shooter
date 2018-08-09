@@ -4,15 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class ScoreDisplayController : MonoBehaviour {
 
-    ScoreCounter scoreCounter;
+    ScoreCountFeature scoreCountFeature;
+
     TextMeshProUGUI textElement;
 	void Start () {
-        scoreCounter = FindObjectOfType<ScoreCounter>();
+        scoreCountFeature = FindObjectOfType<ScoreCountFeature>();
         textElement = GetComponent<TextMeshProUGUI>();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
-        textElement.text = scoreCounter.score + "";
+        textElement.text = scoreCountFeature.score + "";
 	}
 }

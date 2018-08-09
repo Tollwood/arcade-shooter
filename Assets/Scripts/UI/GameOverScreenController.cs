@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,21 +10,21 @@ public class GameOverScreenController : MonoBehaviour {
     public TextMeshProUGUI currentScoreTitle;
     public TextMeshProUGUI currentScoreValue;
     public TextMeshProUGUI gameOverText;
-    private bool gameOver = false;
-    private ScoreCounter scoreCounter;
+    private bool showCurrentScore = false;
+    private ScoreCountFeature scoreCounter;
 
     private void Start (){
         Game gm = FindObjectOfType<Game>();
         gm.OnGameOver += OnGameOver;
-        gm.OnGameOver += () => { gameOver = true; };
+        gm.OnGameOver += () => { showCurrentScore = true; };
         gm.OnNewGame += OnNewGame;
-        scoreCounter = FindObjectOfType<ScoreCounter>();
+        scoreCounter = FindObjectOfType<ScoreCountFeature>();
         highScore.text = "" + scoreCounter.highScore;
     }
 
     private void Update(){
         
-        if (!gameOver)
+        if (!showCurrentScore)
         {
             currentScoreTitle.enabled = false;
             currentScoreValue.enabled = false;
@@ -57,5 +56,4 @@ public class GameOverScreenController : MonoBehaviour {
         gameOverBG.color = tmpColor;
         gameOverMenu.SetActive(false);
     }
-
 }

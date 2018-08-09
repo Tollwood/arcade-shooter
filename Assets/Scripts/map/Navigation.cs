@@ -4,7 +4,7 @@ public class Navigation : MonoBehaviour {
     public Transform navMeshMaskPrefab;
     public Transform navMeshFloor;
 
-    public void setup(MapConfig currentMap, float tileSize, Transform mapHolder, Coord maxMapSize){
+    public void setup(Level currentMap, float tileSize, Transform mapHolder, Coord maxMapSize){
         Vector3 offSet = new Vector3(withUnEvanOffset(currentMap.mapSize.x), 0, withUnEvanOffset(currentMap.mapSize.y)) * tileSize;
         GetComponent<BoxCollider>().size = new Vector3(currentMap.mapSize.x * tileSize, 0.05f, currentMap.mapSize.y * tileSize);
         GetComponent<BoxCollider>().center = offSet;

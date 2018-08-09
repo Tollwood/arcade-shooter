@@ -6,7 +6,7 @@ public class TimeBoost : Boost
     {
         if (otherCollider.gameObject.tag == "Player")
         {
-            FindObjectOfType<Spawner>().increaseRemainingTime(boostValue);
+            FindObjectOfType<Game>().increaseRemainingTime(boostValue);
             Destroy(gameObject);
         }
     }

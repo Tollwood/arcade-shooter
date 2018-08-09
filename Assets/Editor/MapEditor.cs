@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof (MapGenerator))]
@@ -10,11 +8,11 @@ public class MapEditor : Editor {
     {
         MapGenerator map = target as MapGenerator;
         if(DrawDefaultInspector()){
-            map.GenerateMap();    
+            map.GenerateMap(FindObjectOfType<Game>().levels[0]);    
         }
 
         if(GUILayout.Button("Generate Map")){
-            map.GenerateMap();
+            map.GenerateMap(FindObjectOfType<Game>().levels[0]);
         }
     }
 }

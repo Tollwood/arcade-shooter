@@ -2,14 +2,14 @@
 
 public class Map
 {
-    public MapConfig config { get; private set; }
+    public Level config { get; private set; }
 
     public List<Coord> allCoords { get; private set; }
     private List<Coord> freeCoords;
     private Queue<Coord> shuffeledFreeCoords;
     private Queue<Coord> shuffeledCoords;
 
-    public Map(MapConfig _config)
+    public Map(Level _config)
     {
         config = _config;
         allCoords = new List<Coord>();
