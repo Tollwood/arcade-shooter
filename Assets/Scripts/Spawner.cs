@@ -7,10 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpawnTimeFeature))]
 public class Spawner : MonoBehaviour
 {
-    public event Action<Enemy> OnNewEnemy;
-    // TODO All game Entities should be Instantiated within on parent and this one should remove children once game is over
-    private List<Enemy> livingEnemies;
-    public Enemy enemyPreFab;
+    
 
     private MapGenerator map;
     float nextSpawnTime;
@@ -19,21 +16,23 @@ public class Spawner : MonoBehaviour
     SpawnTimeFeature spawnTimeFeature;
     Game gm;
 
+    Instantiator instantiator;
+    Player player;
+
     private void Start()
     {
         map = FindObjectOfType<MapGenerator>();
         gm = FindObjectOfType<Game>();
-        gm.OnNewLevel += OnNewLevel;
-        gm.OnGameOver += OnGameOver;
+        instantiator = FindObjectOfType<Instantiator>();
+        instantiator.OnNewPlayer += OnNewPlayer;
         campingFeature = GetComponent<CampingFeature>();
         spawnTimeFeature = GetComponent<SpawnTimeFeature>();
-        livingEnemies = new List<Enemy>();
     }
 
     void Update () {
         if(gm.playing && Time.time > nextSpawnTime ){
             nextSpawnTime = spawnTimeFeature.NextSpawnTime();
-            campingFeature.checkCamping(gm.player);
+            campingFeature.checkCamping();
             StartCoroutine(SpawnEnemy());
         }
 	}
@@ -46,7 +45,7 @@ public class Spawner : MonoBehaviour
         Transform spawnTile = map.GetFreeTilePosition();
         if (campingFeature.enabled && campingFeature.isCamping)
         {
-            spawnTile = map.GetTileFromPosition(gm.player.transform.position);
+            spawnTile = map.GetTileFromPosition(player.transform.position);
         }
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
         Color initialColour = tileMat.color;
@@ -59,31 +58,11 @@ public class Spawner : MonoBehaviour
             yield return null;
         }
 
-        Enemy spawnedEnemy = Instantiate(enemyPreFab, spawnTile.position + Vector3.up, Quaternion.identity) as Enemy;
-        OnNewEnemy(spawnedEnemy);
-        livingEnemies.Add(spawnedEnemy);
-
+        Enemy spawnedEnemy = instantiator.InstantiateEnemy(spawnTile.position + Vector3.up);
     }
 
-
-    private void OnNewLevel(Level level)
+    private void OnNewPlayer(Player newPlayer)
     {
-        removeLivingEnemies();
-    }
-
-    private void OnGameOver()
-    {
-        removeLivingEnemies();
-    }
-
-    private void removeLivingEnemies()
-    {
-        foreach (Enemy enemy in livingEnemies)
-        {
-            if (enemy != null)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }
+        player = newPlayer;
     }
 }

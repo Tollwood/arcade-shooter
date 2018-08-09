@@ -13,8 +13,7 @@ public class ScoreCountFeature : MonoBehaviour
     }
 
     void Start () {
-        Spawner spawner = FindObjectOfType<Spawner>();
-        spawner.OnNewEnemy += OnNewEnemy;
+        FindObjectOfType<Instantiator>().OnNewEnemy += OnNewEnemy;
         Game gm = FindObjectOfType<Game>();
         gm.OnNewGame += OnNewGame;
         gm.OnGameOver += OnGameOver;

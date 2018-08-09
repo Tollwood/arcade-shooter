@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamagable {
 
@@ -6,12 +7,10 @@ public class LivingEntity : MonoBehaviour, IDamagable {
     public int health { get; protected set; }
     protected bool dead;
 
-    public System.Action onDeath;
+    public Action onDeath;
 
     protected virtual void Start () {
         health = startingHealth;
-        Game gm = FindObjectOfType<Game>();
-        gm.OnGameOver += Destroy;
 	}
 
 

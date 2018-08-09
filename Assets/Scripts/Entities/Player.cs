@@ -47,6 +47,5 @@ public class Player : LivingEntity{
     {
         Vector3 point = transform.position + new Vector3(rightJoystick.GetInputDirection().x, 0, rightJoystick.GetInputDirection().y);
         controller.LookAt(point);
-
     }
 }

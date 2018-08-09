@@ -8,7 +8,7 @@ public class SpawnTimeFeature : MonoBehaviour
     void Start()
     {
         FindObjectOfType<Game>().OnNewLevel += OnNewLevel;
-        FindObjectOfType<Spawner>().OnNewEnemy += OnNewEnemy;
+        FindObjectOfType<Instantiator>().OnNewEnemy += OnNewEnemy;
     }
 
     public float NextSpawnTime(){

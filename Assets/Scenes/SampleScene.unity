@@ -11399,6 +11399,7 @@ GameObject:
   - component: {fileID: 761647760}
   - component: {fileID: 761647759}
   - component: {fileID: 761647761}
+  - component: {fileID: 761647762}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11417,8 +11418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a3cda69c7204044aad2eb12466a1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 114170733013976732, guid: 8dc380fc4c73c483bb5148d97e344a18,
-    type: 2}
   levels:
   - levelNumber: 1
     spawnTime: 10
@@ -11470,6 +11469,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b90f6e4a73f43bc9ad56750d247b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &761647762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 761647758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62eb95f35e0dc46a8a7db4fd26323b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPreFab: {fileID: 114232227741886362, guid: 8c0263480d5e14217a9c28ff18f16e22,
+    type: 2}
+  playerPrefab: {fileID: 114170733013976732, guid: 8dc380fc4c73c483bb5148d97e344a18,
+    type: 2}
 --- !u!1 &771436250
 GameObject:
   m_ObjectHideFlags: 0
@@ -21186,8 +21200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7bee9953cb34791ad0510deba9e722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPreFab: {fileID: 114232227741886362, guid: 8c0263480d5e14217a9c28ff18f16e22,
-    type: 2}
 --- !u!114 &2051899167
 MonoBehaviour:
   m_ObjectHideFlags: 0

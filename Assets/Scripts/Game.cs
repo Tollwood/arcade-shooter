@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Instantiator))]
 public class Game : MonoBehaviour {
     
     public Action OnGameOver;
     public Action OnNewGame;
     public event Action<Level> OnNewLevel;
 
-    public Player playerPrefab;
-    public Player player { get; private set; }
+    Instantiator instantiator;
 
     public List<Level> levels;
     Level currentLevel;
@@ -17,6 +17,11 @@ public class Game : MonoBehaviour {
     // TODO move to remainingTime Feature
     public float remainingTime { get; private set; }
     public bool playing { get; private set; }
+
+    private void Start()
+    {
+        instantiator = FindObjectOfType<Instantiator>();
+    }
 
     private void Update()
     {
@@ -29,31 +34,30 @@ public class Game : MonoBehaviour {
         }
     }
 
-    public void GameOver(){
+    public void NewGame(){
+        NextLevel();
+        OnNewGame();
+        playing = true;
+    }
+
+    public void GameOver()
+    {
         playing = false;
         currentLevel = null;
         OnGameOver();
     }
 
-    public void NewGame(){
-        player =  Instantiate(playerPrefab, transform);
-        player.onDeath += GameOver;
-        NextLevel();
-        // TODO pass player to OnNewGame
-        OnNewGame();
-        playing = true;
-    }
-  
     void NextLevel()
     {
         currentLevel = GetNextLevel();
         if (currentLevel != null)
         {
             remainingTime = currentLevel.spawnTime;
-            ResetPlayerPosition();
             if (OnNewLevel != null)
             {
                 OnNewLevel(currentLevel);
+                Vector3 playerPosition = FindObjectOfType<MapGenerator>().GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
+                Player player = instantiator.InstantiatePlayer(playerPosition);
             }
         }
     }
@@ -69,13 +73,9 @@ public class Game : MonoBehaviour {
         return null;
     }
 
-    void ResetPlayerPosition()
-    {
-        player.transform.position = FindObjectOfType<MapGenerator>().GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
-    }
-
     internal void increaseRemainingTime(float timeIncrease)
     {
         remainingTime += timeIncrease;
     }
+
 }

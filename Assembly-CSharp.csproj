@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Features\ScoreCountFeature.cs" />
     <Compile Include="Assets\Scripts\Features\SpawnTimeFeature.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
+    <Compile Include="Assets\Scripts\Instantiator.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\map\Coord.cs" />
     <Compile Include="Assets\Scripts\map\Map.cs" />
