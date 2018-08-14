@@ -89,10 +89,12 @@
     <Compile Include="Assets\Scripts\PlayerControlls\RightJoystick.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\UI\GameHubController.cs" />
-    <Compile Include="Assets\Scripts\UI\GameOverScreenController.cs" />
     <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuController.cs" />
     <Compile Include="Assets\Scripts\UI\RemainingTimeDisplayController.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreDisplayController.cs" />
+    <Compile Include="Assets\Scripts\UI\SettingsMenuController.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

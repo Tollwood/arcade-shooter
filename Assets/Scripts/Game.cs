@@ -58,6 +58,7 @@ public class Game : MonoBehaviour {
                 OnNewLevel(currentLevel);
                 Vector3 playerPosition = FindObjectOfType<MapGenerator>().GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
                 Player player = instantiator.InstantiatePlayer(playerPosition);
+                player.onDeath += GameOver;
             }
         }
     }

@@ -14,6 +14,7 @@ public class CampingFeature: MonoBehaviour
 
     private void Start()
     {
+        enabled = PlayerPrefs.GetInt("CampingEnabled", 0) == 0;
         instantiator = FindObjectOfType<Instantiator>();
         instantiator.OnNewPlayer += onNewPlayer;
     }
@@ -23,7 +24,7 @@ public class CampingFeature: MonoBehaviour
     }
 
     public void checkCamping () {
-        if (player !=null && Time.time > nextCampCheckTime)
+        if (enabled && player !=null && Time.time > nextCampCheckTime)
         {
             nextCampCheckTime = Time.time + timeBetweenCampingChecks;
             isCamping = (Vector3.Distance(player.transform.position, campPositionOld) < campThresholdDistance);
