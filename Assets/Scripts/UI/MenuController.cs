@@ -5,7 +5,7 @@ public class MenuController : MonoBehaviour {
     
     public GameObject mainMenu;
     public GameObject settingsMenu;
-    public Image backGround;
+    public GameObject backGround;
 
     private void Start()
     {
@@ -27,16 +27,12 @@ public class MenuController : MonoBehaviour {
 
     private void OnGameOver(){
         mainMenu.SetActive(true);
-        Color tmpColor = backGround.color;
-        tmpColor.a = 150;
-        backGround.color = tmpColor;
+        backGround.SetActive(true);
     }
 
     private void OnNewGame()
     {
-        Color tmpColor = backGround.color;
-        tmpColor.a = 0;
-        backGround.color = tmpColor;
+        backGround.SetActive(false);
         mainMenu.SetActive(false);
     }
 }

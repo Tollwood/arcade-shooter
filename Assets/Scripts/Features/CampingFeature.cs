@@ -2,33 +2,37 @@
 
 public class CampingFeature: MonoBehaviour
 {
-    Instantiator instantiator;
-    Player player;
+    
+    public float timeBetweenCampingChecks = 2;
+    public float campThresholdDistance = 1.5f;
 
-    float timeBetweenCampingChecks = 2;
-    float campThresholdDistance = 1.5f;
-    float nextCampCheckTime;
-    Vector3 campPositionOld;
-
-    public bool isCamping { get; private set; }
+    private float nextCampCheckTime;
+    private Vector3 campPositionOld;
+    private Player player;
+    private MapGenerator map;
+    private bool isCamping = false;
 
     private void Start()
     {
         enabled = PlayerPrefs.GetInt("CampingEnabled", 0) == 0;
-        instantiator = FindObjectOfType<Instantiator>();
-        instantiator.OnNewPlayer += onNewPlayer;
+        FindObjectOfType<Instantiator>().OnNewPlayer += (Player newPlayer) => { player = newPlayer; };
+        map = FindObjectOfType<MapGenerator>();
     }
 
-    private void onNewPlayer(Player newPlayer){
-        player = newPlayer;
-    }
-
-    public void checkCamping () {
-        if (enabled && player !=null && Time.time > nextCampCheckTime)
+    private void Update()
+    {
+        if (enabled && player != null && Time.time > nextCampCheckTime)
         {
             nextCampCheckTime = Time.time + timeBetweenCampingChecks;
             isCamping = (Vector3.Distance(player.transform.position, campPositionOld) < campThresholdDistance);
             campPositionOld = player.transform.position;
         }
-	}
+    }
+
+    internal Transform GetSpawnTile()
+    {
+        return enabled && isCamping 
+            ? map.GetTileFromPosition(player.transform.position)
+            : map.GetFreeTilePosition();
+    }
 }

@@ -2,8 +2,12 @@
 
 public class SpawnTimeFeature : MonoBehaviour
 {
-    float currentTimeBetweenSpan;
-    float timeIncrement;
+    public float currentTimeBetweenSpan;
+    public float timeIncrement;
+
+    public float spawnDelay = 1;
+    public float tileFlashSpeed = 4;
+    public Color flashColour = Color.red;
 
     void Start()
     {

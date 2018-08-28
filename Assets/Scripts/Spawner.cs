@@ -7,24 +7,20 @@ using UnityEngine;
 [RequireComponent(typeof(SpawnTimeFeature))]
 public class Spawner : MonoBehaviour
 {
-    
 
-    private MapGenerator map;
-    float nextSpawnTime;
-
+    public Spawnable spawnable;
     CampingFeature campingFeature;
-    SpawnTimeFeature spawnTimeFeature;
-    Game gm;
 
-    Instantiator instantiator;
-    Player player;
+
+    private SpawnTimeFeature spawnTimeFeature;
+    private float nextSpawnTime;
+    private Game gm;
+    private Instantiator instantiator;
 
     private void Start()
     {
-        map = FindObjectOfType<MapGenerator>();
         gm = FindObjectOfType<Game>();
         instantiator = FindObjectOfType<Instantiator>();
-        instantiator.OnNewPlayer += OnNewPlayer;
         campingFeature = GetComponent<CampingFeature>();
         spawnTimeFeature = GetComponent<SpawnTimeFeature>();
     }
@@ -32,37 +28,25 @@ public class Spawner : MonoBehaviour
     void Update () {
         if(gm.playing && Time.time > nextSpawnTime ){
             nextSpawnTime = spawnTimeFeature.NextSpawnTime();
-            campingFeature.checkCamping();
             StartCoroutine(SpawnEnemy());
         }
 	}
 
     IEnumerator SpawnEnemy(){
-        float spawnDelay = 1;
-        float tileFlashSpeed = 4;
-        Color flashColour = Color.red;
-
-        Transform spawnTile = map.GetFreeTilePosition();
-        if (campingFeature.enabled && campingFeature.isCamping)
-        {
-            spawnTile = map.GetTileFromPosition(player.transform.position);
-        }
+        
+        Transform spawnTile = campingFeature.GetSpawnTile();
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
         Color initialColour = tileMat.color;
 
         float spawnTimer = 0;
-        while (spawnTimer < spawnDelay)
+        while (spawnTimer < spawnTimeFeature.spawnDelay)
         {
-            tileMat.color = Color.Lerp(initialColour, flashColour, Mathf.PingPong(spawnTimer * tileFlashSpeed, 1));
+            tileMat.color = Color.Lerp(initialColour, spawnTimeFeature.flashColour, Mathf.PingPong(spawnTimer * spawnTimeFeature.tileFlashSpeed, 1));
             spawnTimer += Time.deltaTime;
             yield return null;
         }
 
-        Enemy spawnedEnemy = instantiator.InstantiateEnemy(spawnTile.position + Vector3.up);
+        instantiator.Instantiate(spawnable ,spawnTile.position + Vector3.up);
     }
 
-    private void OnNewPlayer(Player newPlayer)
-    {
-        player = newPlayer;
-    }
 }

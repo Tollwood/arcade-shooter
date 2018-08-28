@@ -1,29 +1,29 @@
 ﻿<Properties StartupConfiguration="{B98C6E15-FB41-F365-3A63-DC649ACF2E85}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Features/CampingFeature.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/MenuController.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/GameOverScreenController.cs" Line="21" Column="58" />
-      <File FileName="Assets/Scripts/Spawner.cs" Line="61" Column="1" />
+      <File FileName="Assets/Scripts/UI/MainMenuController.cs" Line="38" Column="6" />
+      <File FileName="Assets/Scripts/Spawner.cs" Line="15" Column="22" />
       <File FileName="Assets/Scripts/map/MapGenerator.cs" Line="33" Column="45" />
       <File FileName="Assets/Scripts/Features/ScoreCountFeature.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/UI/RemainingTimeDisplayController.cs" Line="9" Column="1" />
       <File FileName="Assets/Scripts/boost/Boost.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/boost/HealthBoost.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/boost/SpawnBoost.cs" Line="9" Column="50" />
-      <File FileName="Assets/Scripts/boost/TimeBoost.cs" Line="12" Column="6" />
-      <File FileName="Assets/Scripts/Entities/Enemy.cs" Line="32" Column="22" />
+      <File FileName="Assets/Scripts/boost/HealthBoost.cs" Line="3" Column="33" />
+      <File FileName="Assets/Scripts/boost/SpawnBoost.cs" Line="3" Column="32" />
+      <File FileName="Assets/Scripts/boost/TimeBoost.cs" Line="3" Column="31" />
+      <File FileName="Assets/Scripts/Entities/Enemy.cs" Line="6" Column="34" />
       <File FileName="Assets/Scripts/UI/GameHubController.cs" Line="9" Column="17" />
-      <File FileName="Assets/Scripts/UI/Healthbar.cs" Line="36" Column="32" />
+      <File FileName="Assets/Scripts/UI/Healthbar.cs" Line="18" Column="1" />
       <File FileName="Assets/Scripts/UI/ScoreDisplayController.cs" Line="7" Column="1" />
-      <File FileName="Assets/Scripts/Features/SpawnTimeFeature.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Features/SpawnTimeFeature.cs" Line="3" Column="14" />
       <File FileName="Assets/Editor/MapEditor.cs" Line="19" Column="1" />
       <File FileName="Assets/Scripts/Entities/Gun.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entities/GunController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entities/IDamagable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Entities/LivingEntity.cs" Line="38" Column="39" />
+      <File FileName="Assets/Scripts/Entities/LivingEntity.cs" Line="40" Column="1" />
       <File FileName="Assets/Scripts/Entities/Player.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entities/Projectile.cs" Line="53" Column="10" />
-      <File FileName="Assets/Scripts/Features/CampingFeature.cs" Line="13" Column="26" />
+      <File FileName="Assets/Scripts/Features/CampingFeature.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/map/Coord.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/map/Map.cs" Line="3" Column="17" />
       <File FileName="Assets/Scripts/map/Navigation.cs" Line="15" Column="33" />
@@ -35,9 +35,10 @@
       <File FileName="Assets/Scripts/Level.cs" Line="13" Column="21" />
       <File FileName="Assets/Scripts/Utility.cs" Line="18" Column="1" />
       <File FileName="Assets/Scripts/Game.cs" Line="61" Column="44" />
-      <File FileName="Assets/Scripts/Instantiator.cs" Line="32" Column="16" />
-      <File FileName="Assets/SettingsMenuController.cs" Line="20" Column="30" />
-      <File FileName="Assets/MenuController.cs" Line="22" Column="34" />
+      <File FileName="Assets/Scripts/Instantiator.cs" Line="17" Column="28" />
+      <File FileName="Assets/Scripts/UI/SettingsMenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UI/MenuController.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/Entities/Spawnable.cs" Line="9" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -45,7 +46,6 @@
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/map/MapGenerator.cs" relfile="Assets/Scripts/map/MapGenerator.cs" line="34" column="1" />
       <Breakpoint file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/LivingEntity.cs" relfile="Assets/Scripts/LivingEntity.cs" line="48" column="1" />
-      <Breakpoint file="/Volumes/dev/projects/Arcade Shooter/Assets/Scripts/Entities/LivingEntity.cs" relfile="Assets/Scripts/Entities/LivingEntity.cs" line="40" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
