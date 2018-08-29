@@ -14,45 +14,49 @@ public class Instantiator : MonoBehaviour {
     public SpawnBoost spawnBoostPreFab;
     public Player playerPrefab;
 
-    public void Instantiate(Spawnable spawnable, Vector3 spawnPosition) {
+    public GameObject Instantiate(Spawnable spawnable, Vector3 spawnPosition) {
         switch(spawnable){
             case Spawnable.Enemy:
-                InstantiateEnemy(spawnPosition);
-                break;
+                return InstantiateEnemy(spawnPosition);
             case Spawnable.HealthBoost:
-                InstantiateHealthBoost(spawnPosition);
-                break;
+                return InstantiateHealthBoost(spawnPosition);
+
             case Spawnable.TimeBoost:
-                InstantiateTimeBoost(spawnPosition);
-                break;
+                return InstantiateTimeBoost(spawnPosition);
             case Spawnable.SpawnBoost:
-                InstantiateSpawnBoost(spawnPosition);
-                break;
+                return  InstantiateSpawnBoost(spawnPosition);
+            default:
+                throw new Exception("Spawnable is not configured");
         }
+
     }
 
-    private void InstantiateEnemy(Vector3 spawnPosition)
+    private GameObject InstantiateEnemy(Vector3 spawnPosition)
     {
         Enemy spawnedEnemy = Instantiate(enemyPreFab, spawnPosition, Quaternion.identity) as Enemy;
         gameObjects.Add(spawnedEnemy.gameObject);
-        OnNewEnemy(spawnedEnemy);  
+        OnNewEnemy(spawnedEnemy);
+        return spawnedEnemy.gameObject;
     }
 
-    private void InstantiateHealthBoost(Vector3 spawnPosition)
+    private GameObject InstantiateHealthBoost(Vector3 spawnPosition)
     {
         HealthBoost healthBoost = Instantiate(healthBoostPreFab, spawnPosition, Quaternion.identity);
         gameObjects.Add(healthBoost.gameObject);
+        return healthBoost.gameObject;
     }
 
-    private void InstantiateTimeBoost(Vector3 spawnPosition)
+    private GameObject InstantiateTimeBoost(Vector3 spawnPosition)
     {
         TimeBoost timeBoost = Instantiate(timeBoostPreFab, spawnPosition, Quaternion.identity);
         gameObjects.Add(timeBoost.gameObject);
+        return timeBoost.gameObject;
     }
 
-    private void InstantiateSpawnBoost(Vector3 spawnPosition){
+    private GameObject InstantiateSpawnBoost(Vector3 spawnPosition){
         SpawnBoost spawnBoost = Instantiate(spawnBoostPreFab, spawnPosition, Quaternion.identity);
         gameObjects.Add(spawnBoost.gameObject);
+        return spawnBoost.gameObject;
     }
 
     public Player InstantiatePlayer(Vector3 playerPosition)

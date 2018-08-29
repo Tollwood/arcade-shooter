@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CampingFeature))]
-[RequireComponent(typeof(SpawnTimeFeature))]
+[RequireComponent(typeof(ISpawnFeature))]
 public class Spawner : MonoBehaviour
 {
 
@@ -12,8 +12,7 @@ public class Spawner : MonoBehaviour
     CampingFeature campingFeature;
 
 
-    private SpawnTimeFeature spawnTimeFeature;
-    private float nextSpawnTime;
+    private ISpawnFeature spawnFeature;
     private Game gm;
     private Instantiator instantiator;
 
@@ -22,12 +21,11 @@ public class Spawner : MonoBehaviour
         gm = FindObjectOfType<Game>();
         instantiator = FindObjectOfType<Instantiator>();
         campingFeature = GetComponent<CampingFeature>();
-        spawnTimeFeature = GetComponent<SpawnTimeFeature>();
+        spawnFeature = GetComponent<ISpawnFeature>();
     }
 
     void Update () {
-        if(gm.playing && Time.time > nextSpawnTime ){
-            nextSpawnTime = spawnTimeFeature.NextSpawnTime();
+        if(gm.playing && spawnFeature.ShouldSpawn() ){
             StartCoroutine(SpawnEnemy());
         }
 	}
@@ -39,14 +37,15 @@ public class Spawner : MonoBehaviour
         Color initialColour = tileMat.color;
 
         float spawnTimer = 0;
-        while (spawnTimer < spawnTimeFeature.spawnDelay)
+        while (spawnTimer < spawnFeature.spawnDelay)
         {
-            tileMat.color = Color.Lerp(initialColour, spawnTimeFeature.flashColour, Mathf.PingPong(spawnTimer * spawnTimeFeature.tileFlashSpeed, 1));
+            tileMat.color = Color.Lerp(initialColour, spawnFeature.flashColour, Mathf.PingPong(spawnTimer * spawnFeature.tileFlashSpeed, 1));
             spawnTimer += Time.deltaTime;
             yield return null;
         }
 
-        instantiator.Instantiate(spawnable ,spawnTile.position + Vector3.up);
+        GameObject instance = instantiator.Instantiate(spawnable ,spawnTile.position + Vector3.up);
+        spawnFeature.Spawned(instance);
     }
 
 }
