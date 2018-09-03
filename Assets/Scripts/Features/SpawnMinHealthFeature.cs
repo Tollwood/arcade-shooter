@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SpawnMinHealthFeature : ISpawnFeature
 {
@@ -7,10 +8,12 @@ public class SpawnMinHealthFeature : ISpawnFeature
     public float timeBetweenChecks = 2;
 
     LivingEntity player;
+    Game game;
     int currentHealthBoostCount = 0;
+
     private float nextCheckTime;
     private bool spawning = false;
-
+    private List<GameObject> gos;
     public override bool ShouldSpawn()
     {
         if(player == null ){
@@ -22,7 +25,7 @@ public class SpawnMinHealthFeature : ISpawnFeature
 
         if(Time.time > nextCheckTime && !spawning ){
             nextCheckTime = Time.time + timeBetweenChecks;
-            spawning = player.health <= minHealth & currentHealthBoostCount <= maxHealthBoosts;
+            spawning = player.health <= minHealth && gos.FindAll((GameObject obj) => obj != null).Count <= maxHealthBoosts;
             return spawning;
         }
         return false;
@@ -30,14 +33,20 @@ public class SpawnMinHealthFeature : ISpawnFeature
 
     public override void Spawned(GameObject spawnedGo)
     {
-        currentHealthBoostCount++;
+        gos.Add(spawnedGo);
         spawning = false;
     }
 
     void Start()
     {
         player = FindObjectOfType<Player>();
+        game = FindObjectOfType<Game>();
+        game.OnNewLevel += resetList;
 
     }
 
+    private void resetList(Level level)
+    {
+        gos = new List<GameObject>();
+    }
 }
