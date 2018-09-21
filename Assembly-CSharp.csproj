@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\boost\Boost.cs" />
     <Compile Include="Assets\Scripts\boost\HealthBoost.cs" />
     <Compile Include="Assets\Scripts\boost\SpawnBoost.cs" />
@@ -74,9 +75,9 @@
     <Compile Include="Assets\Scripts\Entities\Projectile.cs" />
     <Compile Include="Assets\Scripts\Entities\Spawnable.cs" />
     <Compile Include="Assets\Scripts\Features\CampingFeature.cs" />
+    <Compile Include="Assets\Scripts\Features\HealthSpawnFeature.cs" />
     <Compile Include="Assets\Scripts\Features\ISpawnFeature.cs" />
     <Compile Include="Assets\Scripts\Features\ScoreCountFeature.cs" />
-    <Compile Include="Assets\Scripts\Features\SpawnMinHealthFeature.cs" />
     <Compile Include="Assets\Scripts\Features\SpawnMinRemainingTimeFeature.cs" />
     <Compile Include="Assets\Scripts\Features\SpawnTimeFeature.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\UI\RemainingTimeDisplayController.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreDisplayController.cs" />
     <Compile Include="Assets\Scripts\UI\SettingsMenuController.cs" />
+    <Compile Include="Assets\Scripts\UI\SpawnIntervallDisplayController.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

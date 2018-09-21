@@ -4,8 +4,8 @@ public class Healthbar : MonoBehaviour {
 
     public GameObject leftHeartPrefab;
     public GameObject rightHeartPrefab;
-    public float width = 15;
-    public float height = 30;
+    public float width = 10;
+    public float height = 20;
 
     private Player player = null;
     private int renderedHealth = 0;

@@ -28,7 +28,7 @@ public class Player : LivingEntity{
 
     private void handleShooting()
     {
-        if (rightJoystick.GetMagnitude() > 0.7f)
+        if (rightJoystick != null && rightJoystick.GetMagnitude() > 0.7f)
         {
             gunController.Shoot();
         }
@@ -36,16 +36,20 @@ public class Player : LivingEntity{
 
     private void handleMovement()
     {
-        Vector3 moveVector = leftJoystick.GetInputDirection();
-        Vector3 moveInput = new Vector3(moveVector.x, 0, moveVector.y);
-        Vector3 moveVelocity = moveInput.normalized * moveSpeed;
+        if(leftJoystick != null){
+            Vector3 moveVector = leftJoystick.GetInputDirection();
+            Vector3 moveInput = new Vector3(moveVector.x, 0, moveVector.y);
+            Vector3 moveVelocity = moveInput.normalized * moveSpeed;
 
-        controller.Move(moveVelocity);
+            controller.Move(moveVelocity);    
+        }
     }
 
     private void handleLookAt()
     {
-        Vector3 point = transform.position + new Vector3(rightJoystick.GetInputDirection().x, 0, rightJoystick.GetInputDirection().y);
-        controller.LookAt(point);
+        if(rightJoystick != null){
+            Vector3 point = transform.position + new Vector3(rightJoystick.GetInputDirection().x, 0, rightJoystick.GetInputDirection().y);
+            controller.LookAt(point);    
+        }
     }
 }

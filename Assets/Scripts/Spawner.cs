@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
+[System.Serializable]
 [RequireComponent(typeof(CampingFeature))]
-[RequireComponent(typeof(ISpawnFeature))]
-public class Spawner : MonoBehaviour
+public abstract class Spawner : MonoBehaviour
 {
 
     public Spawnable spawnable;
+    public float spawnDelay = 1;
+    public float tileFlashSpeed = 4;
+    public Color flashColour = Color.red;
+
+    public abstract void Spawned(GameObject spawnedGo);
+    public abstract bool ShouldSpawn();
     CampingFeature campingFeature;
 
-
-    private ISpawnFeature spawnFeature;
     private Game gm;
     private Instantiator instantiator;
 
@@ -21,31 +23,38 @@ public class Spawner : MonoBehaviour
         gm = FindObjectOfType<Game>();
         instantiator = FindObjectOfType<Instantiator>();
         campingFeature = GetComponent<CampingFeature>();
-        spawnFeature = GetComponent<ISpawnFeature>();
     }
 
     void Update () {
-        if(gm.playing && spawnFeature.ShouldSpawn() ){
+        if(gm == null){
+            gm = FindObjectOfType<Game>();
+        }
+        if(gm != null && gm.playing && ShouldSpawn() ){
             StartCoroutine(SpawnEnemy());
         }
 	}
 
     IEnumerator SpawnEnemy(){
-        
+
+        if(campingFeature == null ){
+            campingFeature = GetComponent<CampingFeature>();
+        }
         Transform spawnTile = campingFeature.GetSpawnTile();
         Material tileMat = spawnTile.GetComponent<Renderer>().material;
         Color initialColour = tileMat.color;
 
         float spawnTimer = 0;
-        while (spawnTimer < spawnFeature.spawnDelay)
+        while (spawnTimer < spawnDelay)
         {
-            tileMat.color = Color.Lerp(initialColour, spawnFeature.flashColour, Mathf.PingPong(spawnTimer * spawnFeature.tileFlashSpeed, 1));
+            tileMat.color = Color.Lerp(initialColour, flashColour, Mathf.PingPong(spawnTimer * tileFlashSpeed, 1));
             spawnTimer += Time.deltaTime;
             yield return null;
         }
-
+        if(instantiator == null){
+            instantiator = FindObjectOfType<Instantiator>();
+        }
         GameObject instance = instantiator.Instantiate(spawnable ,spawnTile.position + Vector3.up);
-        spawnFeature.Spawned(instance);
+        Spawned(instance);
     }
 
 }

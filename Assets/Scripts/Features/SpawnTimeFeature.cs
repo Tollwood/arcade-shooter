@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpawnTimeFeature : ISpawnFeature
+public class SpawnTimeFeature : Spawner
 {
     public float currentTimeBetweenSpan;
     public float timeIncrement;

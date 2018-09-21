@@ -63,7 +63,9 @@ public class Instantiator : MonoBehaviour {
     {
         Player spwanedPlayer = Instantiate(playerPrefab, playerPosition, Quaternion.identity) as Player;
         gameObjects.Add(spwanedPlayer.gameObject);
-        OnNewPlayer(spwanedPlayer);
+        if(OnNewPlayer != null){
+            OnNewPlayer(spwanedPlayer);    
+        }
         return spwanedPlayer;
     }
 

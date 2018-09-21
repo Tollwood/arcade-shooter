@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Level
@@ -7,7 +8,6 @@ public class Level
     public float spawnTime;
     public float timeBetweenSpan;
     public float timeIncrement;
-
     public Coord mapSize = new Coord(0,0);
     [Range(0, 1)]
     public float obstaclePercent;

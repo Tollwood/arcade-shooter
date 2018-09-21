@@ -6,7 +6,11 @@ public class SpawnBoost : Boost
     {
         if (otherCollider.gameObject.tag == "Player")
         {
-            FindObjectOfType<SpawnTimeFeature>().reduceSpawnSpeed(boostValue);
+
+            GameObject enemySpawner = GameObject.FindWithTag("EnemySpawner");
+            if(enemySpawner != null){
+                enemySpawner.GetComponent<SpawnTimeFeature>().reduceSpawnSpeed(boostValue);
+            }
             Destroy(gameObject);
         }
     }
