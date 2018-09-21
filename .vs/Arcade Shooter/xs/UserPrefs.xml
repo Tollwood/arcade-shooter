@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{B98C6E15-FB41-F365-3A63-DC649ACF2E85}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FollowPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="readme.md">
     <Files>
       <File FileName="Assets/Scripts/Spawner.cs" Line="4" Column="22" />
       <File FileName="Assets/Scripts/Instantiator.cs" Line="66" Column="1" />
@@ -15,7 +15,8 @@
       <File FileName="Assets/Scripts/map/MapGenerator.cs" Line="5" Column="1" />
       <File FileName="Assets/Scripts/Game.cs" Line="27" Column="1" />
       <File FileName="Assets/Scripts/Level.cs" Line="10" Column="32" />
-      <File FileName="Assets/FollowPlayer.cs" Line="15" Column="92" />
+      <File FileName="Assets/FollowPlayer.cs" Line="1" Column="1" />
+      <File FileName="readme.md" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
