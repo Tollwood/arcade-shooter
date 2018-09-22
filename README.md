@@ -4,6 +4,7 @@ A topdown shooter, where you need to stay alive for as long as possible.
 This game is developed as a playground for me to learn the basics of Unity and to have fun developing a game
 
 ## Gameplay
+[video](https://www.youtube.com/watch?v=X_FK56TIlUQ)
 
 You enter a map, with randomly spawning enemies.  Defend yourself, manage time, health and enemy spawn rate by collecting different boosts. Stay as long as possible in one level, kill as many enemies as possible, but let the time run out before the enemies overwhelm and kill you.
 
@@ -38,7 +39,7 @@ Increases players health
 ## Impressions
 
 <img src="impressions/Main_Menu.PNG" width="200">
-<img src="impressions/Settings_Menu.jpeg" width="200">
+<img src="impressions/Settings_Menu.PNG" width="200">
 <img src="impressions/Gameplay_01.PNG" width="200">
 <img src="impressions/Gameplay_02.PNG" width="200">
 <img src="impressions/Gameplay_03.PNG" width="200">
