@@ -55,6 +55,8 @@ public class Game : MonoBehaviour {
             remainingTime = currentLevel.spawnTime;
             if (OnNewLevel != null)
             {
+                Camera.main.transform.parent = null;
+                Camera.main.transform.rotation = Quaternion.identity;
                 OnNewLevel(currentLevel);
                 Vector3 playerPosition = FindObjectOfType<MapGenerator>().GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
                 Player player = instantiator.InstantiatePlayer(playerPosition);

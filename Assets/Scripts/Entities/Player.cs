@@ -4,7 +4,10 @@
 [RequireComponent(typeof(GunController))]
 public class Player : LivingEntity{
 
-    public float moveSpeed = 5;
+    float moveSpeed = 5;
+    float rotationSpeed = 6;
+    float upDownSpeed = 2;
+    private float rotationZ = 0f;
     LeftJoystick leftJoystick;
     RightJoystick rightJoystick;
     PlayerController controller;
@@ -48,8 +51,11 @@ public class Player : LivingEntity{
     private void handleLookAt()
     {
         if(rightJoystick != null){
-            Vector3 point = transform.position + new Vector3(rightJoystick.GetInputDirection().x, 0, rightJoystick.GetInputDirection().y);
-            controller.LookAt(point);    
+            
+            controller.Rotate(rightJoystick.GetInputDirection().x * rotationSpeed);
+            rotationZ += Input.acceleration.y + 0.3f * upDownSpeed;
+            rotationZ = Mathf.Clamp(rotationZ, -30, 30);
+            // controller.LookUpDown(rotationZ);
         }
     }
 }
